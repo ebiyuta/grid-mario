@@ -1,0 +1,127 @@
+
+@keyframes mushroom {
+  0% {
+    transform: scale(0.5) translateX(-100%) translateY(50%);
+  }
+  10%{
+    transform: scale(0.8) translateX(-60%) translateY(12%);
+  }
+  20%{
+    transform: scale(0.5) translateX(-100%) translateY(50%);
+  }
+  30%{
+    transform: scale(0.8) translateX(-60%) translateY(12%);
+  }
+  40%{
+    transform: scale(0.5) translateX(-100%) translateY(50%);
+  }
+  50%{
+    transform: scale(0.8) translateX(-60%) translateY(12%);
+  }
+  60%{
+    transform: scale(1) translateX(-50%);
+  }
+  70%{
+    transform: scale(0.5) translateX(-100%) translateY(50%);
+  }
+  80%{
+    transform: scale(0.8) translateX(-60%) translateY(12%);
+  }
+  90%{
+    transform: scale(1) translateX(-50%);
+  }
+  100% {
+    transform: scale(1) translateX(-50%);
+  }
+}
+
+@keyframes flower {
+  0% {
+    transform: scale(0.5) translateX(-100%) translateY(50%);
+  }
+  10%{
+    transform: scale(0.8) translateX(-60%) translateY(12%);
+  }
+  20%{
+    transform: scale(0.5) translateX(-100%) translateY(50%);
+  }
+  30%{
+    transform: scale(0.8) translateX(-60%) translateY(12%);
+  }
+  40%{
+    transform: scale(0.5) translateX(-100%) translateY(50%);
+  }
+  50%{
+    transform: scale(0.8) translateX(-60%) translateY(12%);
+  }
+  60%{
+    transform: scale(1) translateX(-50%);
+  }
+  70%{
+    transform: scale(0.5) translateX(-100%) translateY(50%);
+  }
+  80%{
+    transform: scale(0.8) translateX(-60%) translateY(12%);
+  }
+  90%{
+    transform: scale(1) translateX(-50%);
+  }
+  100% {
+    transform: scale(1) translateX(-50%);
+  }
+}
+
+@keyframes damage {
+  0% {
+    transform: scale(2) translateX(-25%) translateY(-25%);
+  }
+  12.5%{
+    transform: scale(1) translateX(-50%);
+  }
+
+  25%{
+    transform: scale(2) translateX(-25%) translateY(-25%);
+  }
+
+  37.5%{
+    transform: scale(1) translateX(-50%);
+  }
+
+  50%{
+    transform: scale(2) translateX(-25%) translateY(-25%);
+  }
+
+  62.5% {
+    transform: scale(1) translateX(-50%);
+  }
+  
+  75%{
+    transform: scale(2) translateX(-25%) translateY(-25%);
+  }
+  87.5% {
+    transform: scale(1) translateX(-50%);
+  }
+}
+
+@keyframes gameover {
+  0% {
+    transform: scale(0);
+    color: #ff0;
+  }
+  20%{
+    color: #f00;
+  }
+  40%{
+    color: #00f;
+  }
+  60%{
+    color: #ff0;
+  }
+  80%{
+    color: #f00;
+  }
+  100%{
+    transform: scale(1);
+    color: #00f;
+  }
+}

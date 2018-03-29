@@ -1,0 +1,11 @@
+.js_gameover{
+  font-family: 'Press Start 2P', cursive;
+  text-align: center;
+  font-size: 38px;
+  opacity: 0;
+}
+
+.js_gameover.is_active{
+  opacity: 1;
+  animation: gameover 1s ;
+}

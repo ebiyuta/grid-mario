@@ -1,0 +1,271 @@
+.bl_mario {
+    &.is_mushroom {
+        grid-template-columns: 1fr repeat(12, $pixelBig) 1fr;
+        grid-template-rows: repeat(16, $pixelBig);
+        animation: mushroom 1s step-end;
+    }
+    &.is_flower {
+        grid-template-columns: 1fr repeat(12, $pixelBig) 1fr;
+        grid-template-rows: repeat(16, $pixelBig);
+        animation: flower 1s step-end;
+        @for $i from 1 through 21 {
+            .bl_mario_itemRed#{$i} {
+                background-color: $fireWhite;
+            }
+            .bl_mario_itemGre#{$i} {
+                background-color: $firered;
+            }
+        }
+  }
+      &.is_toFlower {
+        grid-template-columns: 1fr repeat(12, $pixelBig) 1fr;
+        grid-template-rows: repeat(16, $pixelBig);
+        animation: mushroom 1s step-end;
+        @for $i from 1 through 21 {
+            .bl_mario_itemRed#{$i} {
+                background-color: $fireWhite;
+            }
+            .bl_mario_itemGre#{$i} {
+                background-color: $firered;
+            }
+        }
+    }
+  &.is_damage {
+        animation: damage 1s step-end;
+    }
+  &.is_gameover {
+             @for $i from 1 through 21 {
+            .bl_mario_itemRed#{$i} {
+                transform: translate(-20%,60%);
+            }
+            .bl_mario_itemGre#{$i} {
+                transform: translate(60% ,10%);
+            }
+            .bl_mario_itemYel#{$i} {
+                transform: translate(20% ,-50%);
+            }
+        }
+    }
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: 1fr repeat(12, $pixel) 1fr;
+    grid-template-rows: repeat(16, $pixel);
+    grid-template-areas : 
+        "... ... ... ... r01 r01 r01 r01 r01 ... ... ... ..." 
+        "... ... ... r02 r02 r02 r02 r02 r02 r02 r02 r02 ..." 
+        "... ... ... g01 g01 g01 y01 y01 g02 y02 ... ... ..." 
+        "... ... g04 y05 g03 y03 y01 y01 g02 y02 y04 y04 ..." 
+        "... ... g04 y05 g03 g05 y01 y01 y06 g06 y04 y04 y07" 
+        "... ... g07 g07 y08 y08 y01 y01 g08 g08 g08 g08 ..." 
+        "... ... ... ... y09 y09 y09 y09 y09 y09 y09 ... ..." 
+        "... ... ... g09 g09 r03 g10 g10 g10 ... ... ... ..." 
+        "... ... g13 g09 g09 r03 g11 g11 r04 g12 g12 g12 ..." 
+        "... g14 g14 g14 g14 r05 r05 r05 r05 g12 g12 g12 g15" 
+        "... y10 y10 g16 r06 y11 r07 r07 y12 r08 g17 y13 y13" 
+        "... y10 y10 y14 r09 r09 r09 r09 r09 r09 y15 y13 y13" 
+        "... y10 y10 r10 r09 r09 r09 r09 r09 r09 r11 y13 y13" 
+        "... ... ... r12 r12 r12 ... ... r13 r13 r13 ... ..." 
+        "... ... g18 g18 g18 ... ... ... ... g19 g19 g19 ..." 
+        "... g20 g18 g18 g18 ... ... ... ... g19 g19 g19 g21";
+
+    @for $i from 1 through 21 {
+        &_itemRed#{$i} {
+            @if $i < 10 {
+                grid-area: r0#{$i};
+            } @else {
+                grid-area: r#{$i};
+            }
+            background-color: $red;
+        }
+        &_itemGre#{$i} {
+            @if $i < 10 {
+                grid-area: g0#{$i};
+            } @else {
+                grid-area: g#{$i};
+            }
+            background-color: $green
+        }
+        &_itemYel#{$i} {
+            @if $i < 10 {
+                grid-area: y0#{$i};
+            } @else {
+                grid-area: y#{$i};
+            }
+            background-color: $yellow;
+        }
+    }
+}
+
+.bl_items {
+    display: grid;
+    max-width: 300px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    .bl_mushroom{
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 1fr repeat(16, $pixelSmall) 1fr;
+      grid-template-rows: repeat(16, $pixelSmall);
+      grid-template-areas : 
+        "... ... ... ... ... ... ... y01 y01 y02 y02 ... ... ... ... ... ... ..."
+        "... ... ... ... ... ... y04 y01 y01 y03 r01 r01 ... ... ... ... ... ..."
+        "... ... ... ... ... y05 y05 y01 y01 r02 r02 r02 r02 ... ... ... ... ..."
+        "... ... ... ... y06 y05 y05 y01 y01 r02 r02 r02 r02 r03 ... ... ... ..."
+        "... ... ... y07 y06 y05 y05 y01 y01 y08 r04 r04 r04 y09 y09 ... ... ..."
+        "... ... y10 y07 r05 r05 r05 y01 y01 y11 y11 y11 y11 y09 y09 y12 ... ..."
+        "... ... y10 r06 r05 r05 r05 r07 y13 y11 y11 y11 y11 y09 y09 y12 ... ..."
+        "... y14 y10 r06 r05 r05 r05 r07 y13 y11 y11 y11 y11 r08 r08 y12 y15 ..."
+        "... y14 y10 r06 r05 r05 r05 r07 y13 y11 y11 y11 y11 r08 r08 r09 y15 ..."
+        "... y14 y10 y17 r05 r05 r05 y18 y13 y11 y11 y11 y11 y16 r10 r09 y15 ..."
+        "... y19 y19 y19 y19 y19 y19 y19 y19 y19 y19 y19 y19 y19 y19 y19 y19 ..."
+        "... ... y20 r11 r11 r11 w01 w01 w01 w01 w01 w02 r12 r12 r12 y21 ... ..."
+        "... ... ... ... ... w03 w01 w01 w01 w01 w01 w02 w04 ... ... ... ... ..."
+        "... ... ... ... ... w03 w01 w01 w01 w01 w01 y22 w04 ... ... ... ... ..."
+        "... ... ... ... ... w03 w01 w01 w01 w01 w01 y22 w04 ... ... ... ... ..."
+        "... ... ... ... ... ... w05 w05 w05 w05 y23 w06 ... ... ... ... ... ..."
+        ;
+      
+    @for $i from 1 through 23 {
+      &_red#{$i} {
+        @if $i < 10 {
+          grid-area: r0#{$i};
+        } @else {
+          grid-area: r#{$i};
+        }
+          background-color: $red;
+        }
+        &_yel#{$i} {
+        @if $i < 10 {
+          grid-area: y0#{$i};
+        } @else {
+          grid-area: y#{$i};
+        }
+          background-color: $yellow;
+        }
+        &_whi#{$i} {
+        @if $i < 10 {
+          grid-area: w0#{$i};
+        } @else {
+          grid-area: w#{$i};
+        }
+          background-color: $white;
+        }
+      }
+    }
+  .bl_flower{
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr repeat(16, $pixelSmall) 1fr;
+    grid-template-rows: repeat(16, $pixelSmall);
+    grid-template-areas : 
+        "... ... ... ... ... w01 w01 w01 w01 w01 w01 w01 w01 ... ... ... ... ..."
+        "... ... ... w02 w02 w01 w01 w01 w01 w01 w01 w01 w01 w03 w03 ... ... ..."
+        "... ... w04 w02 w02 y01 y01 y01 y01 y01 y01 y01 y01 w03 w03 w05 ... ..."
+        "... w06 w04 y02 y02 y02 r01 r01 r01 r01 r01 r01 y03 y03 y03 w05 w07 ..."
+        "... w06 w04 y02 y02 y02 r01 r01 r01 r01 r01 r01 y03 y03 y03 w05 w07 ..."
+        "... ... w04 w08 w08 y04 y04 y04 y04 y04 y04 y04 y04 w09 w09 w05 ... ..."
+        "... ... ... w08 w08 w10 w10 w10 w10 w10 w10 w10 w10 w09 w09 ... ... ..."
+        "... ... ... ... ... w10 w10 w10 w10 w10 w10 w10 w10 ... ... ... ... ..."
+        "... ... ... ... ... ... ... ... g01 g01 ... ... ... ... ... ... ... ..."
+        "... g02 g02 g02 ... ... ... ... g01 g01 ... ... ... ... g03 g03 g03 ..."
+        "... ... g04 g04 g04 ... ... ... g01 g01 ... ... ... g05 g05 g05 ... ..."
+        "... ... g04 g04 g04 g06 ... ... g01 g01 ... ... g07 g05 g05 g05 ... ..."
+        "... ... ... g08 g08 g08 g08 ... g01 g01 ... g09 g09 g09 g09 ... ... ..."
+        "... ... ... g08 g08 g08 g08 ... g01 g01 ... g09 g09 g09 g09 ... ... ..."
+        "... ... ... ... g10 g10 g10 g10 g10 g10 g10 g10 g10 g10 ... ... ... ..."
+        "... ... ... ... ... ... ... g11 g11 g11 g11 ... ... ... ... ... ... ..."
+
+        ;
+    
+    @for $i from 1 through 11 {
+      &_red#{$i} {
+        @if $i < 10 {
+          grid-area: r0#{$i};
+        } @else {
+          grid-area: r#{$i};
+        }
+          background-color: $red;
+        }
+        &_yel#{$i} {
+        @if $i < 10 {
+          grid-area: y0#{$i};
+        } @else {
+          grid-area: y#{$i};
+        }
+          background-color: $yellow;
+        }
+        &_whi#{$i} {
+        @if $i < 10 {
+          grid-area: w0#{$i};
+        } @else {
+          grid-area: w#{$i};
+        }
+          background-color: $white;
+        }
+        &_gre#{$i} {
+        @if $i < 10 {
+          grid-area: g0#{$i};
+        } @else {
+          grid-area: g#{$i};
+        }
+          background-color: $flowerGreen;
+        }
+      }
+  }
+    .bl_goomba{
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 1fr repeat(16, $pixelSmall) 1fr;
+      grid-template-rows: repeat(16, $pixelSmall);
+      grid-template-areas : 
+        "... ... ... ... ... ... ... b01 b01 b01 b01 ... ... ... ... ... ... ..."
+        "... ... ... ... ... ... b02 b01 b01 b01 b01 b03 ... ... ... ... ... ..."
+        "... ... ... ... ... b04 b02 b01 b01 b01 b01 b03 b05 ... ... ... ... ..."
+        "... ... ... ... b06 b04 b02 b01 b01 b01 b01 b03 b05 b07 ... ... ... ..."
+        "... ... ... b08 v01 v01 b02 b01 b01 b01 b01 b03 v02 v02 b09 ... ... ..."
+        "... ... b10 b10 b10 w01 v03 b01 b01 b01 b01 v04 w02 b11 b11 b11 ... ..."
+        "... ... b10 b10 b10 w01 v03 v05 v05 v05 v05 v04 w02 b11 b11 b11 ... ..."
+        "... b12 b10 b10 b10 w01 v03 w03 b14 b14 w04 v04 w02 b11 b11 b11 b13 ..."
+        "... b12 b10 b10 b10 w05 w05 w05 b14 b14 w06 w06 w06 b11 b11 b11 b13 ..."
+        "... b15 b15 b15 b15 b15 b15 b15 b15 b15 b15 b15 b15 b15 b15 b15 b15 ..."
+        "... ... b16 b16 b16 b16 w07 w07 w07 w07 w07 w07 b17 b17 b17 b17 ... ..."
+        "... ... ... ... ... w08 w08 w08 w08 w08 w08 w08 w08 ... ... ... ... ..."
+        "... ... ... v06 v06 w08 w08 w08 w08 w08 w08 w08 w08 ... ... ... ... ..."
+        "... ... v07 v08 v08 v08 v08 w09 w09 w09 w09 w09 v09 v09 ... ... ... ..."
+        "... ... v07 v08 v08 v08 v08 v10 w10 w10 w10 v11 v09 v09 ... ... ... ..."
+        "... ... ... v08 v08 v08 v08 v10 w11 w11 v12 v12 v12 ... ... ... ... ..."
+        ;
+      
+      @for $i from 1 through 17 {
+      &_bro#{$i} {
+        @if $i < 10 {
+          grid-area: b0#{$i};
+        } @else {
+          grid-area: b#{$i};
+        }
+          background-color: $brown;
+        }
+        &_bla#{$i} {
+        @if $i < 10 {
+          grid-area: v0#{$i};
+        } @else {
+          grid-area: v#{$i};
+        }
+          background-color: $black;
+        }
+        &_whi#{$i} {
+        @if $i < 10 {
+          grid-area: w0#{$i};
+        } @else {
+          grid-area: w#{$i};
+        }
+          background-color: $white;
+        }
+      }
+  }
+}
